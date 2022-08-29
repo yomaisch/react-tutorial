@@ -3,10 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 class Square extends React.Component {
+    // コンストラクタを追加して state を初期化する。
+    constructor(props) {
+        // サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要がある。
+        super(props);
+        this.state = {
+            value: null,
+        };
+    }
+
     render() {
         return (
-            <button className="square">
-                {/* TODO */}
+            <button
+                className="square"
+                onClick={() => this.setState({ value: 'X' })}
+            >
+                {this.state.value}
             </button>
         );
     }
@@ -14,7 +26,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
     renderSquare(i) {
-        return <Square />;
+        return <Square value={i} />;
     }
 
     render() {
